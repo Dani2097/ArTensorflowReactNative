@@ -15,10 +15,8 @@ $ yarn start
 
 Then scan the QR code to open it in the `Expo Go` app.
 
-If the app crashes on startup, see [here][readme] for more info.
+s
 
-<img src="screenshot_portrait.jpg" width="250">
-<img src="screenshot_landscape.jpg" width="500">
 
 [posedetection]: https://github.com/tensorflow/tfjs-models/tree/master/pose-detection
 [tfhub]: https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4
