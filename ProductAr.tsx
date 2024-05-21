@@ -144,41 +144,7 @@ export default function ProductAr() {
                 />
                 <PoseRenderer poses={poses} cameraType={cameraType} isPortrait={isPortrait(orientation)}/>
                 {/*<View style={styles.fpsContainer}><Text>FPS: {fps}</Text></View>*/}
-                <View style={{
-                    bottom: 45,
-                    borderRadius: 8,
-                    left: 12,
-                    position: 'absolute',
-                    flexDirection: 'row',
-                    padding: 3,
-                    gap: 4,
-                    zIndex: 3000
-                }}>
-                    {selectedEarrings &&
-                        <TouchableOpacity onPress={() => setOpenSelectedProductModal(selectedEarrings)}
-                                          style={{overflow: 'visible', marginRight: 12}}>
-                            <Image source={{uri: selectedEarrings.urlImage.replace(/ /g, '')}}
-                                   style={{
-                                       width: 40, height: 40, backgroundColor: 'blue',
-                                       borderRadius: 8,
-                                       borderWidth: 1,
-                                       borderColor: 'gold',
-                                   }}
-                                   width={40} height={40}/>
-                        </TouchableOpacity>}
-                    {selectedNecklace &&
-                        <TouchableOpacity onPress={() => setOpenSelectedProductModal(selectedNecklace)}
-                                          style={{overflow: 'visible', marginRight: 12}}>
-                            <Image source={{uri: selectedNecklace.urlImage.replace(/ /g, '')}}
-                                   style={{
-                                       width: 40, height: 40,
-                                       borderRadius: 8,
-                                       borderWidth: 1,
-                                       borderColor: 'gold',
-                                   }}
-                                   width={40} height={40}/>
-                        </TouchableOpacity>}
-                </View>
+
 
                 {/*<View style={styles.cameraTypeSwitcher} onTouchEnd={handleSwitchCameraType}><Text>Switch*/}
                 {/*    to {cameraType === Camera.Constants.Type.front ? 'back' : 'front'} camera</Text>*/}

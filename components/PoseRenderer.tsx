@@ -61,7 +61,7 @@ const PoseRenderer: React.FC<PoseRendererProps> = ({poses, cameraType, isPortrai
         const dx = renderShoulders[1].coordinates.x - renderShoulders[0].coordinates.x;
         const dy = renderShoulders[1].coordinates.y - renderShoulders[0].coordinates.y;
         const angle = Math.atan2(dy, dx) * (180 / Math.PI); // Converti l'angolo in gradi
-
+        console.log(angle)
         centerIcon =
             <>
                 {/*<Circle key={`center`} cx={centerX} cy={centerY} r='8' strokeWidth='2' fill='#FF0000' stroke='white'/>*/}
@@ -72,7 +72,9 @@ const PoseRenderer: React.FC<PoseRendererProps> = ({poses, cameraType, isPortrai
                     backgroundColor: '#0f00',
                     height: 2 * coefficient,
 
-                    width: 2 * coefficient, transform: [{rotate: `${angle}deg`},{scale:parseFloat(selectedNecklace?.scale||1)},{translateY:selectedNecklace?.scale?parseFloat(-coefficient /( selectedNecklace?.scale*4)||0):0}] // Applica la rotazione
+                    width: 2 * coefficient,
+                    transform: [{rotate: `${180+angle}deg`},{scale:parseFloat((selectedNecklace?.scale||1))},{translateY:selectedNecklace?.scale?parseFloat(-coefficient /( selectedNecklace?.scale*8)||0):10}]
+                    // Applica la rotazione
 
                 }} resizeMode={"contain"}/>
             </>;
@@ -92,7 +94,7 @@ const PoseRenderer: React.FC<PoseRendererProps> = ({poses, cameraType, isPortrai
         render = keypoints.map(k => {
             const {cx, cy} = calculateCoordinates(k, flipX, isPortrait);
 
-            const coefficient = 3;
+            const coefficient = 2.8;
             const width = (1 * distance) / coefficient;
             const height = (2.5 * distance) / coefficient;
             const distanceFromNose = Math.abs(noseCoordinates?.cx - cx);
