@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { ProductsContext } from './ProductContenxt';
+import strings from "./strings";
 
 const PopupMenu =  ({visible, onClose }) => {
-    const { setCategory } = useContext(ProductsContext);
+    const { setCategory,deviceLanguage } = useContext(ProductsContext);
 
     const handleCategorySelect = (category) => {
         setCategory(category);
@@ -13,13 +14,13 @@ const PopupMenu =  ({visible, onClose }) => {
     return (
         <View style={styles.menu}>
             <TouchableOpacity onPress={() => handleCategorySelect('earrings')}>
-                <Text style={styles.menuItem}>Orecchini</Text>
+                <Text style={styles.menuItem}>{strings[deviceLanguage]['Orecchini']}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleCategorySelect('necklace')}>
-                <Text style={styles.menuItem}>Collane</Text>
+                <Text style={styles.menuItem}>{strings[deviceLanguage]['Collane']}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={onClose}>
-                <Text style={styles.menuItem}>Chiudi</Text>
+                <Text style={styles.menuItem}>{strings[deviceLanguage]['Chiudi']}</Text>
             </TouchableOpacity>
         </View>
     );

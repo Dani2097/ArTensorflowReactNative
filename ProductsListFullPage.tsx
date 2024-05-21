@@ -36,7 +36,6 @@ const ProductList = () => {
     } = useContext(ProductsContext);
     const backAction = () => {
         setShowList(false);
-        console.log('asdasd')
         return true;
 
     };

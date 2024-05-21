@@ -1,6 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {Modal, View, Text, Dimensions, TouchableOpacity} from "react-native";
+import { NativeModules, Platform } from 'react-native';
 
 export const ProductsContext = createContext(null);
 
@@ -16,6 +17,13 @@ export const ProductsProvider = ({children}: any) => {
         title: string,
         urlImage: string
     }>(false);
+
+    const deviceLanguage =
+        Platform.OS === 'ios'
+            ? NativeModules.SettingsManager.settings.AppleLocale ||
+            NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
+            : NativeModules.I18nManager.localeIdentifier;
+
     useEffect(() => {
         const fetchProducts = async () => {
             const snapshot = await firestore().collection('Prodotti').get();
@@ -33,6 +41,7 @@ export const ProductsProvider = ({children}: any) => {
             showList,
             setShowList,
             products,
+            deviceLanguage:deviceLanguage ==='it_IT'?deviceLanguage:'other',
             selectedEarrings,
             setSelectedEarrings,
             selectedNecklace,

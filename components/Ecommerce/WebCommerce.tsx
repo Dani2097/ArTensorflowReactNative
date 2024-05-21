@@ -25,7 +25,6 @@ export default function WebCommerce(props): JSX.Element {
     // onfocus get params
     useEffect(() => {
         const unsubscribe = props.navigation.addListener('focus', () => {
-            console.log(props.route.params)
             setLoading(!!props.route?.params?.url)
             setStartUrl(props.route?.params?.url ? props.route.params?.url : START_URL)
             setUrl(props.route.params?.url)

@@ -61,7 +61,6 @@ const PoseRenderer: React.FC<PoseRendererProps> = ({poses, cameraType, isPortrai
         const dx = renderShoulders[1].coordinates.x - renderShoulders[0].coordinates.x;
         const dy = renderShoulders[1].coordinates.y - renderShoulders[0].coordinates.y;
         const angle = Math.atan2(dy, dx) * (180 / Math.PI); // Converti l'angolo in gradi
-        console.log(angle)
         centerIcon =
             <>
                 {/*<Circle key={`center`} cx={centerX} cy={centerY} r='8' strokeWidth='2' fill='#FF0000' stroke='white'/>*/}
@@ -73,7 +72,7 @@ const PoseRenderer: React.FC<PoseRendererProps> = ({poses, cameraType, isPortrai
                     height: 2 * coefficient,
 
                     width: 2 * coefficient,
-                    transform: [{rotate: `${180+angle}deg`},{scale:parseFloat((selectedNecklace?.scale||1))},{translateY:selectedNecklace?.scale?parseFloat(-coefficient /( selectedNecklace?.scale*8)||0):10}]
+                    transform: [{rotate: `${(Platform.OS === 'ios' ? 180:0)+angle}deg`},{scale:parseFloat((selectedNecklace?.scale||1))},{translateY:selectedNecklace?.scale?parseFloat(-coefficient /( selectedNecklace?.scale*8)||0):10}]
                     // Applica la rotazione
 
                 }} resizeMode={"contain"}/>

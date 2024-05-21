@@ -1,12 +1,14 @@
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {TouchableOpacity, View, StyleSheet, Text, Dimensions} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import FadeInView from "./FadeInView";
+import {ProductsContext} from "../ProductContenxt";
+import strings from "../strings";
 
 export default function  WardrobeButton({setWardrobe}: {setWardrobe: Function}) {
     const [isMessageVisible, setIsMessageVisible] = React.useState(false);
-
+    const {deviceLanguage} = useContext(ProductsContext)
     useEffect(() => {
         setIsMessageVisible(true)
         const timer = setTimeout(() => {
@@ -17,7 +19,7 @@ export default function  WardrobeButton({setWardrobe}: {setWardrobe: Function}) 
     return (<>
             <FadeInView visible={isMessageVisible} style={styles.message}>
                 <Text style={{color:'gold'}}>
-                    Vuoi provare alcuni accessori direttamente dal tuo telefonino? Clicca qui
+                    {strings[deviceLanguage]['startMessage']}
                 </Text>
             </FadeInView>
             <TouchableOpacity style={styles.button} onPress={() => setWardrobe()}>

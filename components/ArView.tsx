@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import ArButtons from "./Ar/ArButtons";
 import ProductsListFullPage from "../ProductsListFullPage";
 import {ProductsContext} from "./ProductContenxt";
+import strings from "./strings";
 
 export default function ArView(props) {
     const {
@@ -13,9 +14,10 @@ export default function ArView(props) {
         openSelectedProductModal,
         setOpenSelectedProductModal,
         setSelectedEarrings,
-        setSelectedNecklace
+        setSelectedNecklace,
+        deviceLanguage
     } = React.useContext(ProductsContext);
-    console.log(openSelectedProductModal)
+    console.log({deviceLanguage})
     return (
         // @ts-ignore
         <View style={{
@@ -24,10 +26,12 @@ export default function ArView(props) {
         }}>
             <ArButtons {...props}/>
             <ProductAr/>
+            {/*@ts-ignore*/}
             <View style={styles.thumbNails}>
                 {selectedEarrings &&
                     <TouchableOpacity onPress={() => setOpenSelectedProductModal(selectedEarrings)}
                                       style={{overflow: 'visible', marginRight: 12}}>
+                        {/*@ts-ignore*/}
                         <Image source={{uri: selectedEarrings.urlImage.replace(/ /g, '')}}
                                style={styles.imageThumb}
                                width={40} height={40}/>
@@ -35,6 +39,7 @@ export default function ArView(props) {
                 {selectedNecklace &&
                     <TouchableOpacity onPress={() => setOpenSelectedProductModal(selectedNecklace)}
                                       style={{overflow: 'visible', marginRight: 12}}>
+                        {/*@ts-ignore*/}
                         <Image source={{uri: selectedNecklace.urlImage.replace(/ /g, '')}}
                                style={styles.imageThumb}
                                width={40} height={40}/>
@@ -43,7 +48,9 @@ export default function ArView(props) {
             <ProductsList/>
             <ProductsListFullPage/>
             <Modal transparent visible={!!openSelectedProductModal} animationType={'slide'}>
+                {/*@ts-ignore*/}
                 <View style={{...Dimensions.get('window'), justifyContent: 'center', alignItems: 'center'}}>
+                    {/*@ts-ignore*/}
                     <View style={styles.modalContainer}>
                         <Text
                             style={styles.modaleText}>
@@ -54,18 +61,27 @@ export default function ArView(props) {
                             if (openSelectedProductModal?.type === 'necklace') setSelectedNecklace(null);
                             setOpenSelectedProductModal(false)
                         }}>
-                            <Text style={{fontSize: 12, padding: 4}}>Deselect</Text>
+                            {/*@ts-ignore*/}
+                            <Text style={{fontSize: 12, padding: 4}}>
+                                {strings[deviceLanguage]['Deseleziona']}
+                            </Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => {
                             setOpenSelectedProductModal(false)
                             props.navigation.navigate('Products', {url: openSelectedProductModal?.url})
                         }}>
-                            <Text style={{fontSize: 12, padding: 4}}>Show In
-                                Market
+                            {/*@ts-ignore*/}
+                            <Text style={{fontSize: 12, padding: 4}}>
+                                {strings[deviceLanguage]['Visualizza in negozio']}
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => setOpenSelectedProductModal(false)}>
-                            <Text style={{fontSize: 12, padding: 4}}>Chiudi</Text>
+                            {/*@ts-ignore*/}
+                            <Text style={{fontSize: 12, padding: 4}}>
+                                {strings[deviceLanguage]['Chiudi']}
+
+                            </Text>
+
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -96,7 +112,7 @@ const styles = StyleSheet.create({
         borderColor: 'gold',
     },
     thumbNails:{
-        bottom: Platform.OS === 'ios' ? 150 : 45,
+        bottom: Platform.OS === 'ios' ? 150 : 150,
         borderRadius: 8,
         left: 12,
         position: 'absolute',

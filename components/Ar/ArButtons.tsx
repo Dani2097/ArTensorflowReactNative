@@ -2,10 +2,11 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons, MaterialCommunityIcons, SimpleLineIcons} from "@expo/vector-icons";
 import React, {useState} from "react";
 import {ProductsContext} from "../ProductContenxt";
+import strings from "../strings";
 
 export default function ArButtons(props) {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
-    const {showList, setShowList, setCategory, category} = React.useContext(ProductsContext)
+    const {showList, setShowList, setCategory, category,deviceLanguage} = React.useContext(ProductsContext)
 
     const openMenu = () => {
         setIsMenuVisible(prev => !prev);
@@ -31,7 +32,7 @@ export default function ArButtons(props) {
                 <MaterialCommunityIcons name="necklace" size={18} color={category === 'necklace' ? 'gold' : "black"}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setShowList(prev => !prev)} style={styles.button}>
-                <Text>{showList ? "Chiudi" : "Visualizza Tutti"}</Text>
+                <Text>{showList ? strings[deviceLanguage]['Chiudi'] : strings[deviceLanguage]['Visualizza tutti']}</Text>
             </TouchableOpacity>
         </View>
     </View>
