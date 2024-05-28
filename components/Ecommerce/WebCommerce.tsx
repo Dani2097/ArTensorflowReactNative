@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo} from "react";
-import { BackHandler, Linking, } from "react-native";
+import {BackHandler, Linking, SafeAreaView,} from "react-native";
 import DLGWebView from "../WebView/DLGWebView";
 import Loading from "./Loading";
 import {WebView} from "react-native-webview";
@@ -51,7 +51,7 @@ export default function WebCommerce(props): JSX.Element {
         return () => backHandler.remove();
     }, [backAction]);
     return (
-        <>
+        <SafeAreaView style={{width:"100%",height:"100%"}}>
         <DLGWebView
             onLoadStart={({currentTarget}) => {
             }}
@@ -85,7 +85,7 @@ export default function WebCommerce(props): JSX.Element {
                 props.navigation.navigate('Ar')
 
             }}/>}
-        </>
+        </SafeAreaView>
     )
 }
 

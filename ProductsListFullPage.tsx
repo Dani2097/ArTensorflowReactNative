@@ -12,7 +12,7 @@ import {
 import React, {useContext, useEffect} from "react";
 import {ProductsContext} from "./components/ProductContenxt";
 import FadeInView from "./components/Ui/FadeInView";
-
+import strings from "./components/strings";
 const ProductList = () => {
     const {
         //@ts-ignore
@@ -32,7 +32,9 @@ const ProductList = () => {
         //@ts-ignore
         setShowAr,
         // @ts-ignore
-        showList
+        showList,
+        // @ts-ignore
+        deviceLanguage
     } = useContext(ProductsContext);
     const backAction = () => {
         setShowList(false);
@@ -89,7 +91,7 @@ const ProductList = () => {
 
     return (
         <FadeInView visible={showList} style={{...styles.container, zIndex: showList ? 12000 : -2}}>
-            <Text style={styles.title}>Prodotti indossabili</Text>
+            <Text style={styles.title}>{strings[deviceLanguage]['Prodotti indossabili']}</Text>
             <FlatList
                 data={products}
                 /*@ts-ignore*/
@@ -136,6 +138,13 @@ const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
         elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
         backgroundColor: 'white',
         borderRadius: 20,
         maxWidth: Dimensions.get("window").width / 2 - 48,

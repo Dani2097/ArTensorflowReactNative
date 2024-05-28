@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import {ProductsContext, ProductsProvider} from "./components/ProductContenxt";
 import ProductsList from "./ProductsList";

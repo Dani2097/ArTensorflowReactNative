@@ -55,6 +55,13 @@ const styles = StyleSheet.create({
         padding: 6,
         right: 0,
         elevation: 4,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
         zIndex: 10,
     },
     iconContainer: {
@@ -70,7 +77,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         margin: 4,
-        elevation: 4
+        elevation: 4,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
     },
     backButton: {
         position: 'absolute',

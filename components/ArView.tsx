@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, StyleSheet, Dimensions, Modal, Text, Platform, Image} from "react-native";
+import {SafeAreaView,TouchableOpacity, View, StyleSheet, Dimensions, Modal, Text, Platform, Image} from "react-native";
 import ProductAr from "../ProductAr";
 import ProductsList from "../ProductsList";
 import React, {useState} from "react";
@@ -6,6 +6,7 @@ import ArButtons from "./Ar/ArButtons";
 import ProductsListFullPage from "../ProductsListFullPage";
 import {ProductsContext} from "./ProductContenxt";
 import strings from "./strings";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function ArView(props) {
     const {
@@ -17,12 +18,15 @@ export default function ArView(props) {
         setSelectedNecklace,
         deviceLanguage
     } = React.useContext(ProductsContext);
+    const insets=useSafeAreaInsets();
+    console.log(insets)
     console.log({deviceLanguage})
     return (
         // @ts-ignore
-        <View style={{
-            minHeight: Dimensions.get('window').height,
-            maxHeight: Dimensions.get('window').height
+<SafeAreaView>
+    <View style={{
+            minHeight: "100%",
+            maxHeight: "100%"
         }}>
             <ArButtons {...props}/>
             <ProductAr/>
@@ -86,7 +90,8 @@ export default function ArView(props) {
                     </View>
                 </View>
             </Modal>
-        </View>
+    </View>
+</SafeAreaView>
     )
 }
 
@@ -98,7 +103,14 @@ const styles = StyleSheet.create({
         paddingTop: 4,
         minWidth: 100,
         borderRadius: 12,
-        elevation: 12
+        elevation: 12,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
     }, modaleText: {
         color: '#ffae00',
         borderBottomWidth: 1,
